@@ -1,4 +1,131 @@
-# OpenAI Realtime Console
+# Catch Up AI - 재미로 하는 Vibe Coding
+
+OpenAI Realtime Console을 기반으로 한 실시간 음성 AI 통역 프로젝트입니다.
+
+## 🎯 프로젝트 개요
+
+이 프로젝트는 OpenAI의 Realtime API를 활용하여 실시간 음성 통역 기능을 제공하는 웹 애플리케이션입니다. 원본 기능을 보존하면서 새로운 실험적 기능을 개발할 수 있는 환경을 제공합니다.
+
+## 🚀 주요 기능
+
+### 🏠 Landing Page
+
+- **Catch Up AI 재미로 하는 Vibe Coding** 메인 화면
+- 두 가지 앱 버전 선택 가능
+- 현대적이고 아름다운 UI 디자인
+
+### 🎯 Original Translator (원본 앱)
+
+- 기존 OpenAI Realtime Console의 모든 기능 보존
+- 실시간 음성 인식 및 번역
+- 다국어 지원 (한국어, 일본어, 중국어, 스페인어, 프랑스어, 독일어)
+- Push-to-Talk 및 VAD (Voice Activity Detection) 모드
+
+### 🧪 Playground (실험용 앱)
+
+- 새로운 기능 개발 및 실험용 환경
+- 원본 앱과 동일한 기능으로 시작
+- 자유로운 수정 및 기능 추가 가능
+
+## 🛠️ 기술 스택
+
+- **Frontend**: React 18 + TypeScript
+- **Styling**: SCSS
+- **Audio Processing**: WavRecorder, WavStreamPlayer
+- **AI Integration**: OpenAI Realtime API
+- **Build Tool**: Create React App
+- **Package Manager**: NPM
+
+## 📦 설치 및 실행
+
+### 필수 요구사항
+
+- Node.js (v16 이상)
+- NPM
+- OpenAI API Key
+
+### 설치 방법
+
+1. **저장소 클론**
+
+   ```bash
+   git clone https://github.com/Bullskc/CUA_VibeCoding.git
+   cd CUA_VibeCoding
+   ```
+
+2. **의존성 설치**
+
+   ```bash
+   npm install
+   ```
+
+3. **환경 변수 설정 (선택사항)**
+
+   ```bash
+   # .env 파일 생성
+   OPENAI_API_KEY=your_api_key_here
+   REACT_APP_LOCAL_RELAY_SERVER_URL=http://localhost:8081
+   ```
+
+4. **애플리케이션 실행**
+
+   ```bash
+   npm start
+   ```
+
+5. **브라우저에서 접속**
+   ```
+   http://localhost:3000
+   ```
+
+## 🎮 사용 방법
+
+1. **API 키 입력**: 앱 시작 시 OpenAI API 키 입력
+2. **앱 선택**: Landing Page에서 원본 앱 또는 실험용 앱 선택
+3. **음성 통역**: Connect 버튼을 눌러 마이크 연결 후 음성 통역 시작
+4. **언어 변경**: 드롭다운 메뉴에서 번역할 언어 선택
+5. **홈으로 이동**: 각 앱에서 "🏠 홈으로" 버튼으로 메인 화면 복귀
+
+## 🔧 주요 컴포넌트
+
+### 라우팅 시스템
+
+- `App.tsx`: 메인 애플리케이션 컴포넌트 (상태 기반 라우팅)
+- `LandingPage.tsx`: 랜딩 페이지 컴포넌트
+- `OriginalApp.tsx`: 원본 앱 컴포넌트
+- `ExperimentApp.tsx`: 실험용 앱 컴포넌트
+
+### 스타일링
+
+- `LandingPage.scss`: 랜딩 페이지 스타일
+- `AdditionalStyles.scss`: 추가 스타일 및 z-index 문제 해결
+- `App.scss`: 메인 애플리케이션 스타일
+
+## 🎨 디자인 특징
+
+- **반응형 디자인**: 모바일 및 데스크톱 환경 지원
+- **모던 UI**: 그라데이션, 그림자, 애니메이션 효과
+- **직관적 UX**: 이모지와 아이콘을 활용한 사용자 친화적 인터페이스
+- **드롭다운 최적화**: z-index 문제 해결로 완벽한 사용성
+
+## 🚨 주의사항
+
+- OpenAI API 사용에는 비용이 발생할 수 있습니다
+- API 키는 안전하게 보관하고 공개하지 마세요
+- 마이크 접근 권한이 필요합니다
+
+## 🔄 릴레이 서버 (선택사항)
+
+```bash
+# 릴레이 서버 실행
+npm run relay
+```
+
+릴레이 서버를 사용하면 API 키를 숨기고 서버에서 커스텀 로직을 실행할 수 있습니다.
+
+---
+
+**Powered by OpenAI Realtime API** 🚀
 
 The OpenAI Realtime Console is intended as an inspector and interactive API reference
 for the OpenAI Realtime API. It comes packaged with two utility libraries,

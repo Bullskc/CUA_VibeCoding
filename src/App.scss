@@ -3,3 +3,7 @@
   width: 100%;
   position: relative;
 }
+
+// Import additional styles for Landing Page and routing
+@import './components/LandingPage.scss';
+@import './components/AdditionalStyles.scss';
