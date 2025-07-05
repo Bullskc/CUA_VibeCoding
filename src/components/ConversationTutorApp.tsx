@@ -486,7 +486,6 @@ export function ConversationTutorApp({
     <div data-component="ConversationTutorApp">
       <div className="content-top">
         <div className="content-title">
-          <img src="/openai-logomark.svg" alt="OpenAI" />
           <span>영어 회화 과외 선생</span>
         </div>
         <div className="content-actions">
