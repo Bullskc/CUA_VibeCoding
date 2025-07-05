@@ -49,7 +49,7 @@
       }
 
       .scenario-icon {
-        font-size: 3rem;
+        font-size: 2rem;
         margin-bottom: 1rem;
         display: block;
       }
@@ -116,6 +116,12 @@
     .scenario-grid {
       grid-template-columns: 1fr;
       gap: 1rem;
+
+      .scenario-card {
+        .scenario-icon {
+          font-size: 1.5rem;
+        }
+      }
     }
 
     .scenario-header h2 {
