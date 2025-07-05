@@ -3,6 +3,7 @@
 팀 협업을 위한 브랜치 보호 규칙을 설정하는 방법을 안내합니다.
 
 ## 📋 목차
+
 - [브랜치 보호 설정 방법](#브랜치-보호-설정-방법)
 - [main 브랜치 보호 규칙](#main-브랜치-보호-규칙)
 - [develop 브랜치 보호 규칙](#develop-브랜치-보호-규칙)
@@ -12,28 +13,34 @@
 ## 🔧 브랜치 보호 설정 방법
 
 ### 1단계: GitHub Repository 설정 접근
+
 1. GitHub에서 프로젝트 저장소로 이동
 2. **Settings** 탭 클릭
 3. 왼쪽 메뉴에서 **Branches** 클릭
 
 ### 2단계: 브랜치 보호 규칙 추가
+
 1. **Add rule** 버튼 클릭
 2. **Branch name pattern**에 보호할 브랜치명 입력
 
 ## 🎯 main 브랜치 보호 규칙
 
 ### 기본 설정
+
 - **Branch name pattern**: `main`
 - **Restrict pushes that create files larger than**: `100 MB`
 
 ### 필수 체크 항목
+
 - ✅ **Require a pull request before merging**
+
   - ✅ **Require approvals**: `2` (최소 2명의 승인 필요)
   - ✅ **Dismiss stale reviews when new commits are pushed**
   - ✅ **Require review from code owners**
   - ✅ **Restrict reviews to users in teams**
 
 - ✅ **Require status checks to pass before merging**
+
   - ✅ **Require branches to be up to date before merging**
   - **Required status checks**:
     - `🔍 Lint & Format Check`
@@ -48,6 +55,7 @@
 - ✅ **Allow deletions**: ❌ (비활성화)
 
 ### 고급 설정
+
 ```yaml
 # .github/branch-protection.yml (예시)
 protection_rules:
@@ -55,11 +63,11 @@ protection_rules:
     required_status_checks:
       strict: true
       contexts:
-        - "ci/github-actions"
-        - "ci/lint-and-format"
-        - "ci/test"
-        - "ci/build"
-        - "ci/security"
+        - 'ci/github-actions'
+        - 'ci/lint-and-format'
+        - 'ci/test'
+        - 'ci/build'
+        - 'ci/security'
     enforce_admins: true
     required_pull_request_reviews:
       required_approving_review_count: 2
@@ -71,14 +79,18 @@ protection_rules:
 ## 🌿 develop 브랜치 보호 규칙
 
 ### 기본 설정
+
 - **Branch name pattern**: `develop`
 
 ### 필수 체크 항목
+
 - ✅ **Require a pull request before merging**
+
   - ✅ **Require approvals**: `1` (최소 1명의 승인 필요)
   - ✅ **Dismiss stale reviews when new commits are pushed**
 
 - ✅ **Require status checks to pass before merging**
+
   - ✅ **Require branches to be up to date before merging**
   - **Required status checks**:
     - `🔍 Lint & Format Check`
@@ -92,11 +104,13 @@ protection_rules:
 ## 👥 팀 권한 설정
 
 ### 1단계: 팀 생성 및 멤버 추가
+
 1. **Settings** → **Manage access**
 2. **Invite teams or people** 클릭
 3. 팀 멤버들을 적절한 권한으로 추가
 
 ### 권한 레벨
+
 - **Admin**: 프로젝트 리더, 모든 권한
 - **Maintain**: 시니어 개발자, 설정 관리 가능
 - **Write**: 일반 개발자, 코드 작성 및 PR 생성
@@ -104,6 +118,7 @@ protection_rules:
 - **Read**: 외부 협력자, 코드 읽기만 가능
 
 ### Code Owners 설정
+
 ```bash
 # .github/CODEOWNERS 파일 생성
 # Global owners
@@ -129,6 +144,7 @@ package.json @senior-dev @devops-team
 ## 🤖 자동화 설정
 
 ### GitHub Actions 필수 체크
+
 현재 설정된 GitHub Actions 워크플로우:
 
 1. **🔍 Lint & Format Check**: 코드 스타일 검사
@@ -140,6 +156,7 @@ package.json @senior-dev @devops-team
 7. **📋 Dependency Review**: 의존성 보안 검토
 
 ### 자동 머지 설정 (선택사항)
+
 ```yaml
 # .github/workflows/auto-merge.yml
 name: Auto-merge dependabot PRs
@@ -174,6 +191,7 @@ jobs:
 ## 📋 브랜치 전략 워크플로우
 
 ### 일반적인 개발 워크플로우
+
 ```bash
 # 1. 최신 develop 브랜치로 전환
 git checkout develop
@@ -205,6 +223,7 @@ git branch -d feature/새로운-기능
 ```
 
 ### 릴리즈 워크플로우
+
 ```bash
 # 1. develop에서 release 브랜치 생성
 git checkout develop
@@ -229,6 +248,7 @@ git push origin v1.1.0
 ```
 
 ## 🚨 긴급 수정 (Hotfix) 워크플로우
+
 ```bash
 # 1. main에서 hotfix 브랜치 생성
 git checkout main
@@ -247,6 +267,7 @@ git push origin hotfix/긴급-버그-수정
 ## 📊 브랜치 상태 모니터링
 
 ### 유용한 Git 명령어
+
 ```bash
 # 브랜치 상태 확인
 git branch -a
@@ -263,6 +284,7 @@ git fetch --all --prune
 ```
 
 ### GitHub Insights 활용
+
 1. **Insights** 탭에서 프로젝트 통계 확인
 2. **Network** 그래프로 브랜치 흐름 시각화
 3. **Pulse**로 프로젝트 활동 요약 확인
@@ -270,6 +292,7 @@ git fetch --all --prune
 ## 🎯 모범 사례
 
 ### DO ✅
+
 - 작은 단위로 자주 커밋
 - 명확한 커밋 메시지 작성
 - PR 생성 전 로컬 테스트 완료
@@ -277,6 +300,7 @@ git fetch --all --prune
 - 브랜치명 컨벤션 준수
 
 ### DON'T ❌
+
 - main/develop 브랜치에 직접 푸시
 - 리뷰 없이 강제 머지
 - 대용량 파일 커밋

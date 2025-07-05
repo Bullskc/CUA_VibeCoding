@@ -1,0 +1,76 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "install",
+      "command": "npm",
+      "args": ["install"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "type": "shell",
+      "label": "start",
+      "command": "npm",
+      "args": ["start"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": {
+        "owner": "webpack-dev-server",
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting the development server",
+          "endsPattern": "(webpack compiled|Failed to compile)"
+        }
+      }
+    },
+    {
+      "type": "shell",
+      "label": "build",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "type": "shell",
+      "label": "Start React App",
+      "command": "npm",
+      "args": ["start"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "clear": true
+      },
+      "problemMatcher": {
+        "owner": "webpack-dev-server",
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting the development server",
+          "endsPattern": "(webpack compiled|Failed to compile|Compiled successfully)"
+        }
+      }
+    }
+  ]
+}

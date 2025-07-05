@@ -3,6 +3,7 @@
 **Catch Up AI - 재미로 하는 Vibe Coding** 프로젝트의 전체 아키텍처와 구조를 설명하는 문서입니다.
 
 ## 📋 목차
+
 - [전체 구조 개요](#전체-구조-개요)
 - [폴더 구조](#폴더-구조)
 - [컴포넌트 아키텍처](#컴포넌트-아키텍처)
@@ -18,6 +19,7 @@
 이 프로젝트는 **React + TypeScript**를 기반으로 하며, **OpenAI Realtime API**를 활용한 실시간 음성 통역 애플리케이션입니다.
 
 ### 🔧 핵심 기술 스택
+
 ```
 Frontend: React 18 + TypeScript
 Styling: SCSS (모듈화)
@@ -29,6 +31,7 @@ Routing: 커스텀 상태 기반 라우팅
 ```
 
 ### 🎨 아키텍처 패턴
+
 - **Component-based Architecture**: 재사용 가능한 컴포넌트
 - **State Management**: React Hooks 기반 상태 관리
 - **Custom Routing**: React Router 없는 가벼운 라우팅
@@ -139,6 +142,7 @@ App (메인 애플리케이션)
 ### 🎯 주요 컴포넌트 설명
 
 #### 1. **App.tsx** - 메인 애플리케이션
+
 ```typescript
 type AppView = 'landing' | 'original' | 'experiment' | 'console';
 
@@ -149,11 +153,13 @@ function App() {
 ```
 
 **역할:**
+
 - 전체 애플리케이션의 라우팅 관리
 - 현재 보여줄 컴포넌트 결정
 - 글로벌 상태 관리
 
 #### 2. **LandingPageComponent** - 랜딩 페이지
+
 ```typescript
 interface LandingPageProps {
   onNavigate: (view: 'landing' | 'original' | 'experiment' | 'console') => void;
@@ -161,11 +167,13 @@ interface LandingPageProps {
 ```
 
 **역할:**
+
 - 프로젝트 소개 및 앱 선택
 - 아름다운 UI로 사용자 첫인상 관리
 - 원본 앱과 실험용 앱으로의 네비게이션
 
 #### 3. **OriginalApp & ExperimentApp** - 핵심 앱 컴포넌트
+
 ```typescript
 interface AppProps {
   onNavigate: (view: 'landing' | 'original' | 'experiment' | 'console') => void;
@@ -173,12 +181,15 @@ interface AppProps {
 ```
 
 **역할:**
+
 - OpenAI Realtime API 통합
 - 오디오 처리 및 실시간 번역
 - 사용자 인터페이스 제공
 
 #### 4. **ConsolePage** - 콘솔 기능
+
 **역할:**
+
 - 실제 번역 기능 구현
 - 오디오 녹음 및 재생 관리
 - 실시간 이벤트 로그 표시
@@ -186,6 +197,7 @@ interface AppProps {
 ### 🔧 재사용 가능한 컴포넌트
 
 #### Button 컴포넌트
+
 ```typescript
 interface ButtonProps {
   label?: string;
@@ -196,6 +208,7 @@ interface ButtonProps {
 ```
 
 #### Select 컴포넌트
+
 ```typescript
 interface SelectProps {
   value: LanguageOption;
@@ -205,6 +218,7 @@ interface SelectProps {
 ```
 
 #### Toggle 컴포넌트
+
 ```typescript
 interface ToggleProps {
   defaultValue?: string | boolean;
@@ -235,7 +249,7 @@ const [translations, setTranslations] = useState<Translation[]>([]);
 const [selectedLanguage, setSelectedLanguage] = useState<LanguageOption>({
   code: 'ko',
   label: '🇰🇷 Korean',
-  text: '번역된 텍스트'
+  text: '번역된 텍스트',
 });
 ```
 
@@ -307,11 +321,11 @@ Landing Page → 앱 선택 → Original/Experiment App → Home 버튼으로 �
 // Mobile First 접근법
 .component {
   // 모바일 스타일 (기본)
-  
+
   @media (min-width: 768px) {
     // 태블릿 스타일
   }
-  
+
   @media (min-width: 1024px) {
     // 데스크톱 스타일
   }
@@ -408,16 +422,19 @@ useEffect(() => {
 ## 🔮 향후 확장 계획
 
 ### 1. 추가 기능 구현
+
 - 더 많은 언어 지원
 - 음성 감정 분석
 - 실시간 자막 기능
 
 ### 2. 성능 향상
+
 - PWA 지원
 - 오프라인 기능
 - 캐싱 전략 개선
 
 ### 3. 개발자 경험 개선
+
 - Storybook 도입
 - 더 많은 테스트 커버리지
 - 자동화된 배포 파이프라인

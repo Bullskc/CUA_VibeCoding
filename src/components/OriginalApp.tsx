@@ -10,23 +10,21 @@
  * This will also require you to set OPENAI_API_KEY= in a `.env` file
  * You can run it with `npm run relay`, in parallel with `npm start`
  */
-const LOCAL_RELAY_SERVER_URL: string =
-  process.env.REACT_APP_LOCAL_RELAY_SERVER_URL || '';
 
 import { useEffect, useRef, useCallback, useState } from 'react';
-
 import { RealtimeClient } from '@openai/realtime-api-beta';
 import { ItemType } from '@openai/realtime-api-beta/dist/lib/client.js';
 import { WavRecorder, WavStreamPlayer } from '../lib/wavtools/index.js';
 import { instructions } from '../utils/conversation_config.js';
 import { WavRenderer } from '../utils/wav_renderer';
-
 import { X, Edit, Zap, ArrowUp, ArrowDown, Menu, Home } from 'react-feather';
 import { Button } from './button/Button';
 import { Toggle } from './toggle/Toggle';
 import { Select } from './select/Select';
-
 import '../pages/ConsolePage.scss';
+
+const LOCAL_RELAY_SERVER_URL: string =
+  process.env.REACT_APP_LOCAL_RELAY_SERVER_URL || '';
 
 /**
  * Type for all event logs
@@ -39,7 +37,7 @@ interface RealtimeEvent {
 }
 
 interface OriginalAppProps {
-  onNavigate: (view: 'landing' | 'original' | 'experiment' | 'console') => void;
+  onNavigate: (view: 'landing' | 'original' | 'experiment') => void;
 }
 
 export function OriginalApp({ onNavigate }: OriginalAppProps) {

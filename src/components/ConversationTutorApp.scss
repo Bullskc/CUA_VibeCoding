@@ -1,0 +1,54 @@
+.conversation-tutor-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 120px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+
+  .content-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+
+    .content-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #2c3e50;
+
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    .content-actions {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .conversation-tutor-content {
+    padding: 10px;
+    height: calc(100vh - 100px);
+
+    .content-top {
+      .content-title {
+        font-size: 20px;
+
+        img {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+  }
+}

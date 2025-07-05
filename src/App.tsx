@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import LandingPageComponent from './components/LandingPage';
 import { OriginalApp } from './components/OriginalApp';
-import { ExperimentApp } from './components/ExperimentApp';
-import { ConsolePage } from './pages/ConsolePage';
+import { ConversationTutorApp } from './components/ConversationTutorApp';
 import './App.scss';
 
-type AppView = 'landing' | 'original' | 'experiment' | 'console';
+type AppView = 'landing' | 'original' | 'experiment';
 
 function App() {
   const [currentView, setCurrentView] = useState<AppView>('landing');
@@ -17,9 +16,11 @@ function App() {
       case 'original':
         return <OriginalApp onNavigate={setCurrentView} />;
       case 'experiment':
-        return <ExperimentApp onNavigate={setCurrentView} />;
-      case 'console':
-        return <ConsolePage />;
+        return (
+          <ConversationTutorApp
+            onNavigateHome={() => setCurrentView('landing')}
+          />
+        );
       default:
         return <LandingPageComponent onNavigate={setCurrentView} />;
     }

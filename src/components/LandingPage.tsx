@@ -2,7 +2,7 @@ import React from 'react';
 import './LandingPage.scss';
 
 interface LandingPageProps {
-  onNavigate: (view: 'landing' | 'original' | 'experiment' | 'console') => void;
+  onNavigate: (view: 'landing' | 'original' | 'experiment') => void;
 }
 
 const LandingPageComponent: React.FC<LandingPageProps> = ({ onNavigate }) => {
@@ -37,9 +37,12 @@ const LandingPageComponent: React.FC<LandingPageProps> = ({ onNavigate }) => {
             onClick={() => onNavigate('experiment')}
             className="landing-button experiment"
           >
-            <div className="button-icon">🧪</div>
-            <h3>실험용 앱</h3>
-            <p>새로운 기능을 추가하고 수정할 수 있는 실험용 앱입니다</p>
+            <div className="button-icon">🗣️</div>
+            <h3>English Conversation Tutor</h3>
+            <p>
+              AI와 함께하는 실시간 영어 회화 연습 - 다양한 상황에서 영어 실력을
+              향상시켜보세요
+            </p>
           </button>
         </div>
 

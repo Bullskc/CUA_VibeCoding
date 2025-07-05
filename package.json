@@ -1,7 +1,6 @@
 {
   "name": "openai-realtime-console",
   "version": "0.0.0",
-  "type": "module",
   "private": true,
   "dependencies": {
     "@openai/realtime-api-beta": "github:openai/openai-realtime-api-beta",
@@ -33,44 +32,28 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "test:ci": "CI=true react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
-    
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx} --max-warnings=0",
-    "lint:fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
-    "lint:check": "eslint src/**/*.{js,jsx,ts,tsx}",
-    
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint:check": "eslint src --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
     "format:check": "prettier --check src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
-    
     "type-check": "tsc --noEmit",
     "type-check:watch": "tsc --noEmit --watch",
-    
     "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js",
     "serve": "serve -s build -l 3000",
-    
     "relay": "nodemon ./relay-server/index.js",
     "relay:dev": "concurrently \"npm run relay\" \"npm start\"",
-    
     "prepare": "husky install",
     "pre-commit": "lint-staged",
-    
     "clean": "rimraf build",
     "clean:modules": "rimraf node_modules package-lock.json && npm install",
-    
     "zip": "zip -r realtime-api-console.zip . -x 'node_modules' 'node_modules/*' 'node_modules/**' '.git' '.git/*' '.git/**' '.DS_Store' '*/.DS_Store' 'package-lock.json' '*.zip' '*.tar.gz' '*.tar' '.env'",
     "package": "npm run build && npm run zip",
-    
     "dev": "npm start",
     "dev:https": "HTTPS=true npm start",
     "preview": "npm run build && npm run serve",
-    
     "update-deps": "npm update && npm audit fix",
     "security-audit": "npm audit --audit-level moderate"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -86,6 +69,11 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "nodemon": "^3.1.7"
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "nodemon": "^3.1.7",
+    "concurrently": "^8.2.0",
+    "rimraf": "^5.0.1",
+    "serve": "^14.2.0"
   }
 }
