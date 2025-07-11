@@ -3,6 +3,7 @@ import { ItemType } from '@openai/realtime-api-beta/dist/lib/client.js';
 import { Scenario } from '../../types/conversation';
 import { Button } from '../button/Button';
 import { Toggle } from '../toggle/Toggle';
+import VoiceSelector, { VoiceOption } from '../conversation/VoiceSelector';
 import './ConversationView.scss';
 
 interface ConversationViewProps {
@@ -17,6 +18,8 @@ interface ConversationViewProps {
   onStopRecording: () => void;
   onDisconnect: () => void;
   onTurnEndTypeChange: (value: string) => void;
+  selectedVoice: VoiceOption;
+  onVoiceChange: (voice: VoiceOption) => void;
   clientCanvasRef: React.RefObject<HTMLCanvasElement>;
   serverCanvasRef: React.RefObject<HTMLCanvasElement>;
 }
@@ -33,29 +36,40 @@ const ConversationView: React.FC<ConversationViewProps> = ({
   onStopRecording,
   onDisconnect,
   onTurnEndTypeChange,
+  selectedVoice,
+  onVoiceChange,
   clientCanvasRef,
   serverCanvasRef,
 }) => {
   return (
     <div className="conversation-view">
       <div className="conversation-header">
-        <div className="scenario-info">
-          <span className="scenario-icon">{scenario.icon}</span>
-          <div className="scenario-details">
-            <h2>{scenario.title}</h2>
-            <p>{scenario.titleKr}</p>
+        <div className="header-left">
+          <div className="scenario-info">
+            <span className="scenario-icon">{scenario.icon}</span>
+            <div className="scenario-details">
+              <h2>{scenario.title}</h2>
+              <p>{scenario.titleKr}</p>
+            </div>
+          </div>
+          <div className="progress-info">
+            <span className="turn-counter">
+              대화 {currentTurn}/{maxTurns}
+            </span>
+            <div className="progress-bar">
+              <div
+                className="progress-fill"
+                style={{ width: `${(currentTurn / maxTurns) * 100}%` }}
+              />
+            </div>
           </div>
         </div>
-        <div className="progress-info">
-          <span className="turn-counter">
-            대화 {currentTurn}/{maxTurns}
-          </span>
-          <div className="progress-bar">
-            <div
-              className="progress-fill"
-              style={{ width: `${(currentTurn / maxTurns) * 100}%` }}
-            />
-          </div>
+        <div className="header-controls">
+          <VoiceSelector
+            selectedVoice={selectedVoice}
+            onVoiceChange={onVoiceChange}
+            disabled={!isConnected}
+          />
         </div>
       </div>
 

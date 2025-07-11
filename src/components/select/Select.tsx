@@ -2,25 +2,31 @@ import { useState, useEffect, useRef } from 'react';
 
 import './Select.scss';
 
-interface LanguageOption {
+export interface LanguageOption {
   code: string;
   label: string;
   text: string;
 }
 
-export function Select({
+interface BaseOption {
+  code: string;
+  label: string;
+  text: string;
+}
+
+export function Select<T extends BaseOption>({
   value,
   options,
   onChange = () => {},
 }: {
-  value: LanguageOption;
-  options: LanguageOption[];
-  onChange: (value: LanguageOption) => void;
+  value: T;
+  options: T[];
+  onChange: (value: T) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
-  const handleSelect = (option: LanguageOption) => {
+  const handleSelect = (option: T) => {
     onChange(option);
     setIsOpen(false);
   };

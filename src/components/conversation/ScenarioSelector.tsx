@@ -1,28 +1,43 @@
 import React from 'react';
 import { Scenario, ScenarioType } from '../../types/conversation';
 import { scenarios } from '../../data/scenarios';
+import VoiceSelector, { VoiceOption } from './VoiceSelector';
 import './ScenarioSelector.scss';
 
 interface ScenarioSelectorProps {
   scenarios: Scenario[];
-  onScenarioSelect: (scenarioId: string) => void;
+  onScenarioSelect: (scenarioId: string) => void | Promise<void>;
+  selectedVoice: VoiceOption;
+  onVoiceChange: (voice: VoiceOption) => void;
 }
 
 const ScenarioSelector: React.FC<ScenarioSelectorProps> = ({
   scenarios,
   onScenarioSelect,
+  selectedVoice,
+  onVoiceChange,
 }) => {
   const [selectedScenario, setSelectedScenario] = React.useState<string | null>(
     null
   );
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleScenarioClick = (scenarioId: string) => {
-    setSelectedScenario(scenarioId);
+    if (!isLoading) {
+      setSelectedScenario(scenarioId);
+    }
   };
 
-  const handleStartConversation = () => {
-    if (selectedScenario) {
-      onScenarioSelect(selectedScenario);
+  const handleStartConversation = async () => {
+    if (selectedScenario && !isLoading) {
+      setIsLoading(true);
+      try {
+        await onScenarioSelect(selectedScenario);
+      } catch (error) {
+        console.error('Failed to start scenario:', error);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
   return (
@@ -53,11 +68,24 @@ const ScenarioSelector: React.FC<ScenarioSelectorProps> = ({
       </div>
 
       {selectedScenario && (
-        <div className="start-section">
-          <button className="start-button" onClick={handleStartConversation}>
-            <span className="start-icon">🚀</span>
-            Start Conversation
-          </button>
+        <div className="bottom-controls">
+          <div className="voice-selector-container">
+            <VoiceSelector
+              selectedVoice={selectedVoice}
+              onVoiceChange={onVoiceChange}
+              disabled={isLoading}
+            />
+          </div>
+          <div className="start-section">
+            <button
+              className={`start-button ${isLoading ? 'loading' : ''}`}
+              onClick={handleStartConversation}
+              disabled={isLoading}
+            >
+              <span className="start-icon">{isLoading ? '⏳' : '🚀'}</span>
+              {isLoading ? 'Starting...' : 'Start Conversation'}
+            </button>
+          </div>
         </div>
       )}
     </div>

@@ -15,6 +15,13 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex: 1;
+    }
+
     .scenario-info {
       display: flex;
       align-items: center;
@@ -62,6 +69,11 @@
           transition: width 0.3s ease;
         }
       }
+    }
+
+    .header-controls {
+      flex: 0 0 auto;
+      margin-left: 20px;
     }
   }
 
